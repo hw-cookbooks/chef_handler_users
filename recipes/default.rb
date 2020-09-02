@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: chef_handler_users
+# Cookbook:: chef_handler_users
 # Recipe:: default
 #
-# Copyright 2013, Heavy Water Ops, LLC
+# Copyright:: 2013, Heavy Water Ops, LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,15 +18,13 @@
 # limitations under the License.
 #
 
-include_recipe "chef_handler"
-
-chef_gem "chef-handler-users"
+chef_gem 'chef-handler-users'
 
 chef_handler_gem_spec = Gem::Specification.find_by_name 'chef-handler-users'
 
-chef_handler "Chef::Handler::Users" do
+chef_handler 'Chef::Handler::Users' do
   arguments [
-    node[:chef_handler_users][:mail_config]
+    node['chef_handler_users']['mail_config'],
   ]
   source File.join(
     chef_handler_gem_spec.full_gem_path,
